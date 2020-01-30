@@ -1,0 +1,23 @@
+<!-- city-location -->
+<div class="city-list">           
+    <div class="city-list__item" 
+    *ngFor="let city of cityData; let i = index"
+    [ngClass]="{'active': city.id === selectedCityId}"
+    (click)="changeSelectCity(city.id)">
+        <img src="{{city.logo}}" alt="city_logo">
+        <div class="item_main-block">
+            <span class="item_main-block__name">{{city.name}}</span>
+            <span class="item_main-block__rout">{{city.rout}}</span>
+        </div>
+        <div class="item_main_setting">
+            <div class="item_main_setting-btn" (click)="toggleSettingBtn($event)">
+                <div class="setting-btn_popup">
+                    <span class="setting-btn_popup__release" (click)="publicCity($event, city.id)">Опубликовать</span>
+                    <span class="setting-btn_popup__delete" (click)="deleteCity($event, city.id)">Удалить</span>
+                </div>
+            </div>
+            <span class="item_main_setting-edit"></span>
+        </div>        
+    </div>
+</div>
+<!-- city-location -->

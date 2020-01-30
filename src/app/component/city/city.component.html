@@ -1,0 +1,13 @@
+ 
+<!-- <app-city> -->
+<ng-container *ngIf="currentMenuCategory === 1">
+    <div class="city-header">City</div>
+    <div class="city-admin">
+        <span class="city-admin_add" (click)="addNewCity()"></span>
+        <input class="city-admin_input" type="search" placeholder="Search" (keyup)="onSearchCity($event)"> 
+        <span class="city-admin_search"></span>
+    </div>
+    <city-location *ngIf="cityData.length > 0" [content]="citySearchOn?citySearchArray:cityData"></city-location>
+</ng-container>
+
+<!-- </app-city> -->   

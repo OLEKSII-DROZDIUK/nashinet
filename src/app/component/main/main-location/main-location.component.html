@@ -1,0 +1,92 @@
+<!-- <main-location> -->
+    <main class="main" #mainBlock>
+        <div class="main-tabs">
+            <div class="main-tabs_param active" (click)="changeContent($event)">Params</div>
+            <div class="main-tabs_set" (click)="changeContent($event)">Setelements</div>
+        </div>
+        <div class="main-content">
+                <!-- <button mat-button>Basic</button> -->
+            <ng-container *ngIf="paramsOn; else paramsOffTemplate">
+                <div class="city-params-a" *ngIf="currentCityData">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="ID" autocomplete="off" value="{{currentCityData[0].id}}">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="URL" autocomplete="off" value="{{currentCityData[0].rout}}">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Date Create" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Data changes" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Who created" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Who last changed" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="email" placeholder="@mail" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Google Map" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="phone" placeholder="Phone" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Work Time of Saturday" autocomplete="off">
+                    </mat-form-field>
+                </div>
+                <div class="city-params-b">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Work Time of Sunday" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Work time of weekdays" autocomplete="off">
+                    </mat-form-field>
+                    <div class="city-params_upload">
+                        <app-material-file-upload></app-material-file-upload>
+                        <img src="/assets/images/city/city_img.svg" alt="city_logo">
+                    </div>
+                </div>
+                <div class="city-params_content">
+                    <div class="content-tabs">
+                        <div class="content-tabs_ru active" (click)="changeContentLang($event, ru)">Russian</div>
+                        <div class="content-tabs_ua" (click)="changeContentLang($event, ua)">Ukrainian</div>
+                        <div class="content-tabs_en" (click)="changeContentLang($event, en)">English</div>
+                    </div>
+                    <div class="content-form">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Page name</mat-label>
+                            <input matInput type="text" placeholder="" autocomplete="off">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Service address</mat-label>
+                            <input matInput type="text" placeholder="" autocomplete="off">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Short descripotion</mat-label>
+                            <textarea matInput placeholder="" cdkAutosizeMaxRows="5"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #paramsOffTemplate>
+                <div class="main-setelem">
+                    <div class="main-setelem-tabs">
+                        <div class="setelem-tabs_ru active" (click)="changeSetElemsLang($event, ru)">Russian</div>
+                        <div class="setelem-tabs_ua" (click)="changeSetElemsLang($event, ua)">Ukrainian</div>
+                        <div class="setelem-tabs_en" (click)="changeSetElemsLang($event, en)">English</div>
+                    </div>
+                    <div class="main-setelem-content" id="subCityForm">
+                        <app-material-input-outline (delSubCityLine)=delSubCityLine($event) *ngFor="let input of subCityFormInputs"></app-material-input-outline>
+                    </div>
+                    <button mat-button (click)="addSubCityLine()">Добавить</button>
+                </div>
+            </ng-template>
+        </div>
+    </main>
+
+<!-- </main-location> -->
