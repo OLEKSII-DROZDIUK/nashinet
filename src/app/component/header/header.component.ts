@@ -3,7 +3,12 @@ import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ViewChild
 import { Router, Data, NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { GlobalService } from '../../services/global.service';
-import { Subscription } from 'rxjs';
+
+import { Store } from '@ngrx/store'
+import { AppState } from '../../ngrx/app.state';
+
+import { ChangeHeaderPage } from  '../../ngrx/actions/header.action'
+
 
 @Component({
   selector: 'app-header',
@@ -13,15 +18,22 @@ import { Subscription } from 'rxjs';
   encapsulation : ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
+	public headerPage:number;
 
 	constructor(@Inject(DOCUMENT) private document: Document,
-				private globalService: GlobalService) {
+				private globalService: GlobalService,
+				private store: Store<AppState>) {
 		
 	}
 
 // //////////////////////////////////////////////////////////////////////// LIFE CYCLE
 	public ngOnInit(): void {
-		this.choiceMainCategory(1); //default "Location category"
+		//this.choiceMainCategory(1); //default "Location category"
+
+		this.store.select('headerPage').subscribe(({choiceHeaderPage}) => {  //lisent store
+            this.headerPage = choiceHeaderPage
+		})
+		this.choiceMainCategory(this.headerPage)
 
 	}
 
@@ -46,7 +58,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 				currentNode.classList.remove("select");
 			};
 			
-			this.globalService.changeCurentMenuCategory(index);
+			// this.globalService.changeCurentMenuCategory(index);
+
+			this.store.dispatch(new ChangeHeaderPage(index))
+
 			clickCategory.classList.add("select");
 	};
 

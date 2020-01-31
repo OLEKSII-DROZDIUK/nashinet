@@ -1,6 +1,12 @@
-import { Component, ElementRef, Inject, Input, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef, AfterViewInit } from "@angular/core";
+import { Component, ElementRef, Inject, Input, ViewEncapsulation, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef, AfterViewInit, OnInit } from "@angular/core";
+
+import { Store } from '@ngrx/store'
+import { AppState } from '../../../ngrx/app.state';
 
 import { GlobalService } from '../../../services/global.service';
+import { DeleteCity } from "../../../ngrx/actions/city.action";
+
+import {City} from '../../../interfaces/city.model';
 
 @Component({
     selector: 'city-location',
@@ -9,22 +15,25 @@ import { GlobalService } from '../../../services/global.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation : ViewEncapsulation.None
   })
-  export class CityLocation implements AfterViewInit {
-    @Input('content') cityData: Object = null;
-    @ViewChild('content', {static: false}) content:  Object;
+  export class CityLocation implements AfterViewInit, OnInit {
+    @Input('content') cityData: City[];
+    @ViewChild('content', {static: false}) content:  City[];
 
-	public selectedCityId:number;
-    
+	public selectedCityId:string;
+	public allCityData: City[];
+
 	constructor(@Inject(ElementRef) private element: ElementRef,
-				private globalService: GlobalService,) {
+				private globalService: GlobalService,
+				private store: Store<AppState>) {
                     
 	}
 	
 	public ngOnInit(): void {
-		this.changeSelectCity(this.cityData[0].id); //default its 1st index of array
+		this.store.select('cityPage').subscribe(({allCityData}) => {  //lisent store
+            this.allCityData = allCityData;
+		})
+		this.changeSelectCity(this.allCityData[0].id); //default its 1st index of array
 
-		//Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-		//Add 'implements OnInit' to the class.
 		
 	};
     
@@ -32,7 +41,9 @@ import { GlobalService } from '../../../services/global.service';
     public ngAfterViewInit(): void {   
 
         
-    };
+	};
+	
+	//////LIFE OFF
 
     public toggleSettingBtn(event) {
 		const hasClass = event.target.classList.contains('open');
@@ -44,19 +55,22 @@ import { GlobalService } from '../../../services/global.service';
 		}
 	};
 
-	public publicCity(event, cityId:number) {
+	public publicCity(event, cityId:string) {
 		const parent = event.target.parentElement.closest('.city-list__item');
 		console.log("public: ", event.target, cityId);
 	};
 
 
-	public deleteCity(event, cityId:number) {
-		const parent = event.target.parentElement.closest('.city-list__item');
-		parent.remove();
-		console.log("delete city ID: ", cityId);
+	public deleteCity(event, cityId:string) {
+		let filtredCity = this.allCityData.filter((arr:City) => {
+			if(arr.id !=  cityId) return arr
+		});
+		this.store.dispatch(new DeleteCity(filtredCity))
+
+		this.changeSelectCity(this.allCityData[0].id);
 	};
 
-	public changeSelectCity( id: number) {
+	public changeSelectCity( id: string) {
 		this.selectedCityId = id;
 		this.globalService.changeSelectCityG(id);
 	};

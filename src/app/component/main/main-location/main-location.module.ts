@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MateriaInputOutlineModule} from '../../material-input-outline/material-input-outline.module';
 
@@ -21,6 +21,7 @@ import { MainLocation  } from './main-location.component';
 		CommonModule,
 		MatInputModule,
 		FormsModule,
+		ReactiveFormsModule,
 		HttpClientModule,
 		MatIconModule,
 		MatProgressBarModule,

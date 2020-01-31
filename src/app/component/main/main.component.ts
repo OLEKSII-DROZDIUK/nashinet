@@ -1,9 +1,11 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Renderer2,
+import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation,
 	ElementRef, Inject, ChangeDetectorRef, AfterViewInit, OnDestroy, HostListener} from '@angular/core';
-import { Router, Data, NavigationEnd } from '@angular/router';
+
 import { DOCUMENT } from '@angular/common';
-import { GlobalService } from '../../services/global.service';
 import { Subscription } from 'rxjs';
+
+import { Store } from '@ngrx/store'
+import { AppState } from '../../ngrx/app.state';
 
 @Component({
   selector: 'app-main',
@@ -14,20 +16,21 @@ import { Subscription } from 'rxjs';
 })
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 	public currentMenuCategory:number = 1; //set default Location page
-	private subsMenuCategory: Subscription = new Subscription();
 
 	constructor(@Inject(DOCUMENT) private document: Document,
-				private globalService: GlobalService,
-				private cdRef: ChangeDetectorRef) {
+				private cdRef: ChangeDetectorRef,
+				private store: Store<AppState>) {
 		
 	}
 
 // //////////////////////////////////////////////////////////////////////// LIFE CYCLE
 	public ngOnInit(): void {
-		this.subsMenuCategory = this.globalService.$currentMenuCategory.subscribe((index: number) => {
-			this.currentMenuCategory = index;
+
+		this.store.select('headerPage').subscribe(({choiceHeaderPage}) => {  //lisent store
+			this.currentMenuCategory = choiceHeaderPage;
 			this.cdRef.detectChanges();
 		})
+
 
 	}
 
@@ -37,7 +40,7 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 	};
 
 	public ngOnDestroy(): void {
-		this.subsMenuCategory.unsubscribe();
+
 	};
 
 // ////////////////////////////////////////////////////////////////////////////////// LIFE CYCLE ENd

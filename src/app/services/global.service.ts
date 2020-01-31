@@ -7,7 +7,7 @@ export class GlobalService {
     private currentMenuCategorySubject = new Subject<number>();
     $currentMenuCategory = this.currentMenuCategorySubject.asObservable();
 
-    private selectedCityIdSubject = new Subject<number>();
+    private selectedCityIdSubject = new Subject<string>();
     $selectedCityId = this.selectedCityIdSubject.asObservable();
     
 
@@ -17,7 +17,7 @@ export class GlobalService {
        return this.currentMenuCategorySubject.next(index)
     };
 
-    public changeSelectCityG(id:number) { //change city in main-location
+    public changeSelectCityG(id:string) { //change city in main-location
         return this.selectedCityIdSubject.next(id);
     };
   

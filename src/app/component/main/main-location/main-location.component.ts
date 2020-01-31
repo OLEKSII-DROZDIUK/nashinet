@@ -1,12 +1,16 @@
 import { Component, ElementRef, Inject, Input,OnDestroy,OnInit, ViewEncapsulation,
      ChangeDetectionStrategy, ViewChild, ChangeDetectorRef, AfterViewInit } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { Store } from '@ngrx/store'
+import { AppState } from '../../../ngrx/app.state';
 
 import { GlobalService } from '../../../services/global.service';
 import { Subscription } from 'rxjs';
 
-//store
-import { CITY_IN_STORE } from '../../../DATA/city-data';
+import {City} from '../../../interfaces/city.model';
+
 
 @Component({
     selector: 'main-location',
@@ -17,33 +21,51 @@ import { CITY_IN_STORE } from '../../../DATA/city-data';
   })
 
   export class MainLocation implements OnInit, AfterViewInit, OnDestroy {
-    public cityData:{ id: number, name: string, rout: string, logo: string }[] = [];
-    public currentCityData:Object = null;
+    public cityData:City[];
+    public currentCityData:City[];
     public paramsOn: boolean = true;
     public contentFormLang: string = "ru";
     public subCityLang: string =  "ru";
     public subCityFormInputs:Array<any> = [];
-    public selectedCityId:number = 0;
+    public selectedCityId:string;
     
     private subsSelectCityId: Subscription = new Subscription();
+
+    public cityMainForm = new FormGroup({
+        inputId: new FormControl('',  Validators.compose([Validators.required])),
+        inputUrl: new FormControl('',  Validators.compose([Validators.required])),
+        inputDateCreate: new FormControl('',  Validators.compose([Validators.required])),
+        inputDataChange: new FormControl('',  Validators.compose([Validators.required])),
+        inputCreated: new FormControl('',  Validators.compose([Validators.required])),
+        inputLastChange: new FormControl('',  Validators.compose([Validators.required])),
+        inputEmail: new FormControl('',  Validators.compose([Validators.required])),
+        inputGoogleMap: new FormControl('',  Validators.compose([Validators.required])),
+        inputPhone: new FormControl('',  Validators.compose([Validators.required])),
+        inputSaturday: new FormControl('',  Validators.compose([Validators.required])),
+        inputSunday: new FormControl('',  Validators.compose([Validators.required])),
+        inputWorkWeekday: new FormControl('',  Validators.compose([Validators.required])),
+	});
 
     constructor(@Inject(ElementRef) private element: ElementRef,
                 @Inject(DOCUMENT) private document: Document,
                 private globalService: GlobalService,
-                private cdRef:ChangeDetectorRef,) {            
+                private cdRef:ChangeDetectorRef,
+                private store: Store<AppState>) {            
     };
 
     public ngOnInit(): void {
-        this.cityData = CITY_IN_STORE;
-        this.searchCurrentCity(this.selectedCityId);
+
+        this.store.select('cityPage').subscribe(({allCityData}) => {  //lisent store
+            this.cityData = allCityData;
+        });
         
-        this.subsSelectCityId = this.globalService.$selectedCityId.subscribe((id: number) => {
+        this.searchCurrentCity(this.cityData[0].id);
+        
+        this.subsSelectCityId = this.globalService.$selectedCityId.subscribe((id: string) => {
             this.selectedCityId = id;
             this.searchCurrentCity(id);
-            console.log("in subs select city id")
 			this.cdRef.detectChanges();
         })
-    
     };
     
 
@@ -57,9 +79,9 @@ import { CITY_IN_STORE } from '../../../DATA/city-data';
 
     ///life off
 
-    public searchCurrentCity(id:number) {
+    public searchCurrentCity(id:string) {
         this.currentCityData = this.cityData.filter(arr => arr.id === id);
-        console.log(this.currentCityData)
+        this.cdRef.detectChanges();
     };
 
     public changeContent(event) {

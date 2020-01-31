@@ -1,11 +1,13 @@
 import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Renderer2,
 	ElementRef, Inject, ChangeDetectorRef, AfterViewInit, OnDestroy, HostListener} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store'
+import { AppState } from '../../ngrx/app.state';
+import { Subscription, Observable } from 'rxjs';
 
-import { GlobalService } from '../../services/global.service';
-//store
-import { CITY_IN_STORE } from '../../DATA/city-data';
+import {City} from '../../interfaces/city.model';
+import { AddCity } from '../../ngrx/actions/city.action'
+
 
 @Component({
   selector: 'app-city',
@@ -16,7 +18,8 @@ import { CITY_IN_STORE } from '../../DATA/city-data';
 })
 
 export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
-	public cityData:{ id: number, name: string, rout: string, logo: string }[] = [];
+	public cityData:City[] = [];
+
 	public currentMenuCategory:number = 1;
 	//search city variable
 	public citySearchValue: string  = "";
@@ -27,18 +30,22 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	constructor(@Inject(DOCUMENT) private document: Document,
 				private cdRef:ChangeDetectorRef,
-				private globalService: GlobalService,) {
+				private store: Store<AppState>) {
 		
 	};
 
 // //////////////////////////////////////////////////////////////////////// LIFE CYCLE
 	public ngOnInit(): void {
-		this.cityData = CITY_IN_STORE;
 
-		this.subsMenuCategory = this.globalService.$currentMenuCategory.subscribe((index: number) => {
-			this.currentMenuCategory = index;
+		this.store.select('cityPage').subscribe(({allCityData}) => {  //lisent store
+			this.cityData = allCityData;
+		})
+
+		this.store.select('headerPage').subscribe(({choiceHeaderPage}) => {
+			this.currentMenuCategory = choiceHeaderPage;
 			this.cdRef.detectChanges();
 		})
+
 	}
 
 	public ngAfterViewInit(): void {
@@ -53,7 +60,8 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 //////////////////////////////////////////////////////////////////////////////////// LIFE CYCLE ENd
 
 	public addNewCity() {
-		this.cityData = [...this.cityData,{id: 999, name: "NEW City", rout: "/new_city", logo: "/assets/images/city/city_img.svg"}]
+		const id = `f${(+new Date).toString(16)}`;
+		this.store.dispatch(new AddCity({id: id, name: "NEW City", rout: "/new_city", logo: "/assets/images/city/city_img.svg", published: false}))
 		this.cdRef.detectChanges();
 	};
 

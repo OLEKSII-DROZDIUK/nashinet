@@ -7,44 +7,44 @@
         <div class="main-content">
                 <!-- <button mat-button>Basic</button> -->
             <ng-container *ngIf="paramsOn; else paramsOffTemplate">
-                <div class="city-params-a" *ngIf="currentCityData">
+                <div class="city-params-a" [formGroup]="cityMainForm">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="ID" autocomplete="off" value="{{currentCityData[0].id}}">
+                        <input formControlName="inputId" matInput type="text" placeholder="ID" autocomplete="off" value="{{currentCityData[0].id}}">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="URL" autocomplete="off" value="{{currentCityData[0].rout}}">
+                        <input matInput formControlName="inputUrl" type="text" placeholder="URL" autocomplete="off" value="{{currentCityData[0].rout}}">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Date Create" autocomplete="off">
+                        <input matInput formControlName="inputDateCreate" type="text" placeholder="Date Create" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Data changes" autocomplete="off">
+                        <input matInput formControlName="inputDataChange" type="text" placeholder="Data changes" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Who created" autocomplete="off">
+                        <input matInput formControlName="inputCreated" type="text" placeholder="Who created" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Who last changed" autocomplete="off">
+                        <input matInput formControlName="inputLastChange" type="text" placeholder="Who last changed" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="email" placeholder="@mail" autocomplete="off">
+                        <input matInput formControlName="inputEmail" type="email" placeholder="@mail" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Google Map" autocomplete="off">
+                        <input matInput formControlName="inputGoogleMap" type="text" placeholder="Google Map" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="phone" placeholder="Phone" autocomplete="off">
+                        <input matInput formControlName="inputPhone" type="phone" placeholder="Phone" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Work Time of Saturday" autocomplete="off">
+                        <input matInput formControlName="inputSaturday" type="text" placeholder="Work Time of Saturday" autocomplete="off">
                     </mat-form-field>
                 </div>
-                <div class="city-params-b">
+                <div class="city-params-b" [formGroup]="cityMainForm">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Work Time of Sunday" autocomplete="off">
+                        <input matInput formControlName="inputSunday" type="text" placeholder="Work Time of Sunday" autocomplete="off">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Work time of weekdays" autocomplete="off">
+                        <input matInput formControlName="inputWorkWeekday" type="text" placeholder="Work time of weekdays" autocomplete="off">
                     </mat-form-field>
                     <div class="city-params_upload">
                         <app-material-file-upload></app-material-file-upload>

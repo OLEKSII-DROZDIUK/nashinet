@@ -1,52 +1,51 @@
 import { Action } from '@ngrx/store';
-
-import { CityInLocationPage } from '../../modules/city-data';
+import {AddCity,DeleteCity, CITY_ACTION} from '../actions/city.action';
+import { City } from '../../interfaces/city.model';
 
 export interface State {
-    allCityData:CityInLocationPage[],
-    selected: number
+    allCityData:City[]
 }
 
-export const getId = (state: State) => state[state.selected].id;
-export const getCities = (state: State) => state.allCityData
-export const getSelectedCity = (state: State) => state.selected;  //get index in arr
+// export const getId = (state: State) => state[state.selected].id;
+// export const getCities = (state: State) => state.allCityData
+// export const getSelectedCity = (state: State) => state.selected;  //get index in arr
 
 const initialState: State = {
   allCityData: [
         {
-            id:0,
+            id:"f16ff6f8cb7d",
             name:"Kiev",
             rout: "/",
             logo: '/assets/images/city/city_img.svg',
+            published: false,
         },
         {
-            id:1,
+            id:"f16ff6f8d1bd",
             name:"Drogobich",
             rout: "/drigibuch",
             logo: '/assets/images/city/city_img.svg',
+            published: false,
         },
         {
-            id: 2,
+            id: "f16ff6f8d40d",
             name: "Rovno",
             rout: "/rovno",
             logo: '/assets/images/city/city_img.svg',
+            published: false,
         }
-    ],
-    selected: null
+    ]
 };
 
 
-export function cityReducer(state = initialState, action: Action) {
+export function cityReducer(state = initialState, action) {
 
     switch (action.type) {
-        // case ADD_ONE: 
-        //     return state;
-
-        // case DEL_ONE:
-        //     return state;
-
-        // case SELECT:
-        //     return state
+        case CITY_ACTION.ADD_NEW_CITY: 
+            return {
+                ...state, allCityData:[...state.allCityData, action.payload]
+            }
+        case CITY_ACTION.DEL_ONE_CITY:
+            return {...state, allCityData:action.payload}
 
         default:
             return state;

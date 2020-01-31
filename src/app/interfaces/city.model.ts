@@ -1,9 +1,10 @@
 import { Data } from "@angular/router";
 
-export interface CityInLocationPage {
-    id: number,
+export interface City {
+    id: string,
     name: string,
     rout: string,
+    published?:boolean,
     whoCreate?:string,
     dateCreate?: Data,
     dataChange?: Data,
@@ -13,8 +14,10 @@ export interface CityInLocationPage {
     googleMap?: string,
     workTimeSaturday?: string,
     workTimeSunday?: string,
-    workTimeWeekdats?: string
+    workTimeWeekdats?: string,
 }
 
 
-
+export interface Cities {
+    allCityData:City[]
+}
