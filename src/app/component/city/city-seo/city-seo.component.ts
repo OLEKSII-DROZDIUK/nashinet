@@ -9,13 +9,13 @@ import { DeleteCity } from "../../../ngrx/actions/city.action";
 import {City} from '../../../interfaces/city.model';
 
 @Component({
-    selector: 'city-location',
-    templateUrl:'./city-location.component.html',
-    styleUrls: ['./city-location.component.sass'],
+    selector: 'city-seo',
+    templateUrl:'./city-seo.component.html',
+    styleUrls: ['./city-seo.component.sass'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation : ViewEncapsulation.None
   })
-  export class CityLocation implements AfterViewInit, OnInit {
+  export class CitySeo implements AfterViewInit, OnInit {
     @Input('content') cityData: City[];
     @ViewChild('content', {static: false}) content:  City[];
 
@@ -30,9 +30,10 @@ import {City} from '../../../interfaces/city.model';
 	
 	public ngOnInit(): void {
 		this.store.select('cityPage').subscribe(({allCityData}) => {  //lisent store
-            this.allCityData = allCityData;
+			this.allCityData = allCityData;
 		})
 		this.changeSelectCity(this.allCityData[0].id); //default its 1st index of array
+
 		
 	};
     
@@ -43,31 +44,6 @@ import {City} from '../../../interfaces/city.model';
 	};
 	
 	//////LIFE OFF
-
-    public toggleSettingBtn(event) {
-		const hasClass = event.target.classList.contains('open');
-
-		if(hasClass) {
-			event.target.classList.remove("open");
-		} else {
-			event.target.classList.add("open");
-		}
-	};
-
-	public publicCity(event, cityId:string) {
-		const parent = event.target.parentElement.closest('.city-list__item');
-		console.log("public: ", event.target, cityId);
-	};
-
-
-	public deleteCity(event, cityId:string) {
-		let filtredCity = this.allCityData.filter((arr:City) => {
-			if(arr.id !=  cityId) return arr
-		});
-		this.store.dispatch(new DeleteCity(filtredCity))
-
-		this.changeSelectCity(this.allCityData[0].id);
-	};
 
 	public changeSelectCity( id: string) {
 		this.selectedCityId = id;

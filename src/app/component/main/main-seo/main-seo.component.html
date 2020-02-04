@@ -1,0 +1,168 @@
+<!-- <main-seo -->
+    <main class="mainseo" #mainBlock>
+       <div class="mainseo-page">
+            <div class="mainseo-page__header">Published</div>
+            <div class="mainseo-page_admin">
+                <span class="page_admin__add" (click)="addNewPage()"></span>
+                <input class="page_admin__input" type="search" placeholder="Search" (keyup)="onSearchPage($event)"> 
+                <span class="page_admin__search"></span>
+            </div>
+            <main-seo-page [content]="seoPageSearchOn?citySeoPageArray:citySeoPages"></main-seo-page>
+       </div>
+        <div class="mainseo-data">
+            <div class="mainseo-data_tabs">
+                <div class="main-tabs_param active" (click)="changeContent($event)">Params</div>
+                <div class="main-tabs_set" (click)="changeContent($event)">Seo</div>
+            </div>
+            <div class="mainseo-data_content">
+                <ng-container *ngIf="paramsOn; else paramsOff">
+                    <div class="mainseo-data_content-form" [formGroup]="seoMainForm">
+                        <mat-form-field>
+                            <input formControlName="inputId" matInput type="text" placeholder="ID" autocomplete="off" value="{{citySeoPages[0].id}}">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput formControlName="inputUrl" type="text" placeholder="URL" autocomplete="off" value="{{citySeoPages[0].rout}}">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput formControlName="inputDateCreate" type="text" placeholder="Date Create" autocomplete="off">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput formControlName="inputDataChange" type="text" placeholder="Data changes" autocomplete="off">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput formControlName="inputCreated" type="text" placeholder="Who created" autocomplete="off">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput formControlName="inputLastChange" type="text" placeholder="Who last changed" autocomplete="off">
+                        </mat-form-field>
+                        <mat-checkbox color="primary">category</mat-checkbox>
+                    </div>
+                    <div class="mainseo-data_content-info">
+                        <div class="content-tabs">
+                            <div class="content-tabs_ru" 
+                            [ngClass]="{'active': true && paramsPageLang === 'ru'}" (click)="changeContentLang($event, 'ru')">Russian</div>
+                            <div class="content-tabs_ua" 
+                            [ngClass]="{'active': true && paramsPageLang === 'ua'}" (click)="changeContentLang($event, 'ua')">Ukrainian</div>
+                            <div class="content-tabs_en" 
+                            [ngClass]="{'active': true && paramsPageLang === 'en'}" (click)="changeContentLang($event, 'en')">English</div>
+                        </div>
+                        <div class="content-form">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Page name</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="3"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Short descripotio</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="4"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Long description</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="6"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>SEO description</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="6"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>        
+                </ng-container>
+                <ng-template #paramsOff>
+                    <div class="mainseo-data_content-seo" [formGroup]="seoForm">
+                        <mat-form-field>
+                            <input formControlName="canonUrl" matInput type="text" placeholder="Canonical URL" autocomplete="off" >
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input formControlName="redirectTo" matInput  type="text" placeholder="Redirect to" autocomplete="off">
+                        </mat-form-field>
+                        <mat-checkbox color="primary">noindex</mat-checkbox>
+                        <mat-checkbox color="primary">nofollow</mat-checkbox>
+                        <mat-checkbox color="primary">add to sitemap</mat-checkbox>
+                        <mat-form-field appearance="outline">
+                            <mat-select>
+                                <mat-option value="option">1</mat-option>
+                                <mat-option value="option">0.9</mat-option>
+                                <mat-option value="option">0.8</mat-option>
+                                <mat-option value="option">0.7</mat-option>
+                                <mat-option value="option">0.6</mat-option>
+                                <mat-option value="option">0.5</mat-option>
+                                <mat-option value="option">0.4</mat-option>
+                                <mat-option value="option">0.3</mat-option>
+                                <mat-option value="option">0.2</mat-option>
+                                <mat-option value="option">0.1</mat-option>
+                            </mat-select>
+                        <mat-label>
+                            <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 15H20V13H12V15ZM12 9.5H20V7.5H12V9.5ZM12 4H20V2H12V4ZM0 8.5C0 4.92 2.92 2 6.5 2H7V0L10 3L7 6V4H6.5C4 4 2 6 2 8.5C2 11 4 13 6.5 13H10V15H6.5C2.92 15 0 12.08 0 8.5Z" fill="white" fill-opacity="0.87"/>
+                            </svg>     
+                            <span>Priority</span> 
+                        </mat-label>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-select>
+                                <mat-option value="option">Устройства</mat-option>
+                                <mat-option value="option">Услуги</mat-option>
+                                <mat-option value="option">Новости</mat-option>
+                            </mat-select>
+                        <mat-label>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.247 8.1H16.2V6.2196C16.2 5.7678 15.8322 5.4 15.3804 5.4H15V0H3V0.6H2.1V1.2H1.2V3.3H0.8196C0.3678 3.3 0 3.6678 0 4.1196V17.2257H0.0018C0.0003 17.3946 0.0528 17.5599 0.1584 17.6982C0.3054 17.8902 0.528 18 0.7695 18H14.1972C14.5443 18 14.8497 17.766 14.9319 17.4561L18 9.0447V8.9916C18 8.475 17.6832 8.1 17.247 8.1ZM15.3804 6C15.5016 6 15.6 6.0984 15.6 6.2196V8.1H15V6H15.3804ZM14.4 0.6V5.4V8.1H3.8193C3.7494 8.1 3.6822 8.1117 3.6171 8.1294C3.6117 8.1309 3.6054 8.1303 3.6 8.1318V0.6H14.4ZM3 1.2V8.8755L2.9811 8.9274L2.7 9.6978V1.2H3ZM1.8 1.8H2.1V11.343L1.8 12.1653V3.3V1.8ZM0.6 4.1196C0.6 3.9984 0.6987 3.9 0.8196 3.9H1.2V13.7829L0.6 15.4194V4.1196ZM14.3604 17.2752C14.3409 17.3487 14.2737 17.4 14.1972 17.4H0.7695C0.6966 17.4 0.654 17.3583 0.6351 17.3334C0.6162 17.3088 0.5871 17.2566 0.5982 17.211L1.2 15.561V15.5613L2.1 13.0938L3 10.6263V10.6272L3.5796 9.0369L3.6 8.9814L3.648 8.8497L3.6558 8.8251C3.6756 8.7516 3.7431 8.7 3.8193 8.7H14.4H15H16.2H17.247C17.3607 8.7 17.3901 8.8638 17.3973 8.9457L14.3604 17.2752Z" fill="white" fill-opacity="0.87"/>
+                                <path d="M5.40001 5.1H12.6C12.7656 5.1 12.9 4.9659 12.9 4.8C12.9 4.6341 12.7656 4.5 12.6 4.5H5.40001C5.23441 4.5 5.10001 4.6341 5.10001 4.8C5.10001 4.9659 5.23441 5.1 5.40001 5.1Z" fill="white" fill-opacity="0.87"/>
+                                <path d="M5.40001 2.99999H8.40001C8.56561 2.99999 8.70001 2.86589 8.70001 2.69999C8.70001 2.53409 8.56561 2.39999 8.40001 2.39999H5.40001C5.23441 2.39999 5.10001 2.53409 5.10001 2.69999C5.10001 2.86589 5.23441 2.99999 5.40001 2.99999Z" fill="white" fill-opacity="0.87"/>
+                                <path d="M5.40001 7.20001H12.6C12.7656 7.20001 12.9 7.06591 12.9 6.90001C12.9 6.73411 12.7656 6.60001 12.6 6.60001H5.40001C5.23441 6.60001 5.10001 6.73411 5.10001 6.90001C5.10001 7.06591 5.23441 7.20001 5.40001 7.20001Z" fill="white" fill-opacity="0.87"/>
+                            </svg>
+                            <span>Snap to category</span> 
+                        </mat-label>
+                        </mat-form-field>
+                        <div class="content-seo_images">
+                            <div class="content-seo_images__img16">
+                                <h4>Social image(16х16)</h4>
+                                <app-material-file-upload [text]="'Загрузить'"></app-material-file-upload>
+                                <!-- <img src="" alt="logo_16x16" style="{display:'none'}"> -->
+                            </div>
+                            <div class="content-seo_images__img32">
+                                <h4>Social image(32х32)</h4>
+                                <app-material-file-upload [text]="'Загрузить'"></app-material-file-upload>
+                            </div>
+                            <div class="content-seo_images__img64">
+                                <h4>Social image(64x64)</h4>
+                                <app-material-file-upload [text]="'Загрузить'"></app-material-file-upload>
+                            </div>
+                            <div class="content-seo_images__img64">
+                                <h4>Social image(128x128)</h4>
+                                <app-material-file-upload [text]="'Загрузить'"></app-material-file-upload>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mainseo-data_content-tags">
+                        <div class="content-tags_tabs">
+                            <div class="content-tags_tabs-ru"
+                            [ngClass]="{'active': true && seoPageLang === 'ru'}" (click)="changeContentSeoLang($event, 'ru')">Russian</div>
+                            <div class="content-tags_tabs-ua" 
+                            [ngClass]="{'active': true && seoPageLang === 'ua'}" (click)="changeContentSeoLang($event, 'ua')">Ukrainian</div>
+                            <div class="content-tags_tabs-en" 
+                            [ngClass]="{'active': true && seoPageLang === 'en'}" (click)="changeContentSeoLang($event, 'en')">English</div>
+                        </div>
+                        <div class="content-tags_form">
+                            <mat-form-field appearance="outline">
+                                <mat-label>H1</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="3"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Title</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="4"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Social Title</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="6"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Schema.org</mat-label>
+                                <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="6"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div> 
+                </ng-template>
+            </div>
+        </div>
+    </main>
+<!-- </main-seo> -->

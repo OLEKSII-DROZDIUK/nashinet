@@ -5,12 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MateriaInputOutlineModule} from '../../material-input-outline/material-input-outline.module';
+import {MatButtonModule} from '@angular/material/button'; 
 
-import {MatIconModule} from '@angular/material/icon';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatButtonModule} from '@angular/material/button';
-
-import { MaterialFileUploadComponent } from '../../material-file-upload/material-file-upload.component';
+import { MaterialFileUploadModule} from '../../material-file-upload/material-file-upload.module';
 
 import { MainLocation  } from './main-location.component';
 
@@ -23,13 +20,12 @@ import { MainLocation  } from './main-location.component';
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
-		MatIconModule,
-		MatProgressBarModule,
 		MatButtonModule,
-		MateriaInputOutlineModule
+		MateriaInputOutlineModule,
+		MaterialFileUploadModule
 	],
 	declarations: [
-		[MainLocation, MaterialFileUploadComponent]
+		[MainLocation]
 	],
 	exports: [
 		MainLocation

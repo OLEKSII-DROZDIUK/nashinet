@@ -47,7 +47,7 @@ input::-webkit-search-results-button,
 input::-webkit-search-results-decoration
 	display: none
 
-.city-params-a, .city-params-b
+.city-params-a, .city-params-b, .mainseo-data_content-form, .mainseo-data_content-seo
 	.mat-form-field
 		width: 100%
 		display: flex
@@ -57,7 +57,14 @@ input::-webkit-search-results-decoration
 		background: rgba(255, 255, 255, 0.54)
 	.mat-form-field .mat-form-field-label
 		color: #01A8BD
+	.mat-form-field-invalid .mat-form-field-label
+		color: rgb(255, 0, 0)
 	.mat-focused
 		.mat-form-field-ripple
 			background: rgba(255, 255, 255, 0.87)
 			transition: 0.5s
+	.mat-focused .mat-form-field-label
+		color: #01A8BD
+
+.mat-checkbox .mat-checkbox-frame
+	border-color: #DADADA

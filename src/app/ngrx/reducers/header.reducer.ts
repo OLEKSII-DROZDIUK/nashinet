@@ -8,7 +8,7 @@ export interface State {
 
 
 const initialState: State = {
-  choiceHeaderPage: 1
+  choiceHeaderPage: 0
 };
 
 

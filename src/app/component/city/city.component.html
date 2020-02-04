@@ -1,5 +1,6 @@
  
 <!-- <app-city> -->
+    <!-- if page location -->
 <ng-container *ngIf="currentMenuCategory === 1">
     <div class="city-header">City</div>
     <div class="city-admin">
@@ -7,8 +8,17 @@
         <input class="city-admin_input" type="search" placeholder="Search" (keyup)="onSearchCity($event)"> 
         <span class="city-admin_search"></span>
     </div>
-    <city-location *ngIf="cityData.length > 0" [content]="citySearchOn?citySearchArray:cityData"></city-location>
-    
+    <city-location [content]="citySearchOn?citySearchArray:cityData"></city-location>
 </ng-container>
+
+    <!-- if page SEO -->
+<ng-container *ngIf="currentMenuCategory === 0">
+    <div class="city-header">Pages and Category</div>
+    <div class="city-adminseo">
+        <input class="city-adminseo_input" type="search" placeholder="Search" (keyup)="onSearchCity($event)"> 
+    </div>
+    <city-seo [content]="citySearchOn?citySearchArray:cityData"></city-seo>
+</ng-container>
+
 
 <!-- </app-city> -->   

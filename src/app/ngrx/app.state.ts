@@ -8,4 +8,7 @@ export interface AppState {
     headerPage:{
         choiceHeaderPage:number
     },
+    citySeoPage: {
+        citySeoPages: any
+    }
 };

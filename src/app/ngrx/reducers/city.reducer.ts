@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
-import {AddCity,DeleteCity, CITY_ACTION} from '../actions/city.action';
+import {CITY_ACTION} from '../actions/city.action';
 import { City } from '../../interfaces/city.model';
 
 export interface State {
-    allCityData:City[]
-}
+    allCityData:City[],
+};
 
 // export const getId = (state: State) => state[state.selected].id;
 // export const getCities = (state: State) => state.allCityData
@@ -33,7 +33,7 @@ const initialState: State = {
             logo: '/assets/images/city/city_img.svg',
             published: false,
         }
-    ]
+    ],
 };
 
 

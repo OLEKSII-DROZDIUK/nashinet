@@ -8,13 +8,15 @@ import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { MainLocationModule } from './main-location/main-location.module';
+import  { MainSeoModule } from './main-seo/main-seo.module';
 
-import { MainComponent } from './main.component';
+import { MainComponent } from './main.component'; 
 
 @NgModule({
 	imports: [
 		CommonModule,
 		MainLocationModule,
+		MainSeoModule,
 		
 	],
 	declarations: [

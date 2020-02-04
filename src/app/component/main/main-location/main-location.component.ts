@@ -28,6 +28,8 @@ import {City} from '../../../interfaces/city.model';
     public subCityLang: string =  "ru";
     public subCityFormInputs:Array<any> = [];
     public selectedCityId:string;
+
+    public strtest:string = 'sadasdasdsdasdasdasdasdas'
     
     private subsSelectCityId: Subscription = new Subscription();
 
@@ -129,15 +131,18 @@ import {City} from '../../../interfaces/city.model';
     public delSubCityLine(event:any) {
         const parantConteiner = this.document.getElementById('subCityForm') as HTMLDivElement;
         const parent = event.target.closest("app-material-input-outline") as HTMLDivElement;
-
+        
         for (let i = 1; i < parantConteiner.childNodes.length; i++) {
             let currentNode = parantConteiner.childNodes[i] as HTMLDivElement;
+            console.log(this.subCityFormInputs, currentNode)
             if(currentNode ===  parent) {
-                this.subCityFormInputs.splice(i--,1);//del from Array
+                i--
+                this.subCityFormInputs.splice(i,1);//del from Array
             break;
             };
-        
         };
+        
+        this.cdRef.detectChanges();
     };
 
     public addSubCityLine(event) {

@@ -20,3 +20,9 @@ export class DeleteCity implements Action {
 
     constructor(public payload:City[]) {}
 };
+
+// export class SelectCity implements Action {
+//     readonly type = CITY_ACTION.SELECT_CITY;
+
+//     constructor(public payload:City) {}
+// };

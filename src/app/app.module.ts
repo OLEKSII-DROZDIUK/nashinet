@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule, } from '@ngrx/store';
 import { cityReducer } from './ngrx/reducers/city.reducer';
 import { headerPageReducer } from './ngrx/reducers/header.reducer';
+import {  citySeoPagesReducer } from './ngrx/reducers/seo-page.reducer';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
@@ -27,7 +28,7 @@ import { GlobalService } from './services/global.service';
     BrowserAnimationsModule,
     CityModule,
     MainModule,
-    StoreModule.forRoot({cityPage: cityReducer, headerPage: headerPageReducer}),
+    StoreModule.forRoot({cityPage: cityReducer, headerPage: headerPageReducer, citySeoPage: citySeoPagesReducer}),
     // StoreModule.forRoot({headerPageReducer: headerPageReducer}),
     
   ],

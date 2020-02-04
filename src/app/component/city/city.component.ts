@@ -1,9 +1,8 @@
-import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Renderer2,
-	ElementRef, Inject, ChangeDetectorRef, AfterViewInit, OnDestroy, HostListener} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, Inject, ChangeDetectorRef, AfterViewInit, OnDestroy} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Store } from '@ngrx/store'
 import { AppState } from '../../ngrx/app.state';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import {City} from '../../interfaces/city.model';
 import { AddCity } from '../../ngrx/actions/city.action'
@@ -43,6 +42,7 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		this.store.select('headerPage').subscribe(({choiceHeaderPage}) => {
 			this.currentMenuCategory = choiceHeaderPage;
+			this.citySearchOn = false;
 			this.cdRef.detectChanges();
 		})
 
@@ -77,7 +77,7 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.cdRef.detectChanges();
 		};
 
-		if(this.citySearchValue.length > 0) {
+		if(this.citySearchValue.length > 2) {
 			this.citySearchOn = true;
 			this.citySearchArray = [];
 			searchStr(this.citySearchValue, this.cityData);

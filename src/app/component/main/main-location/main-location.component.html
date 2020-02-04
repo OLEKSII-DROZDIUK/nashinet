@@ -5,7 +5,6 @@
             <div class="main-tabs_set" (click)="changeContent($event)">Setelements</div>
         </div>
         <div class="main-content">
-                <!-- <button mat-button>Basic</button> -->
             <ng-container *ngIf="paramsOn; else paramsOffTemplate">
                 <div class="city-params-a" [formGroup]="cityMainForm">
                     <mat-form-field>
@@ -47,7 +46,7 @@
                         <input matInput formControlName="inputWorkWeekday" type="text" placeholder="Work time of weekdays" autocomplete="off">
                     </mat-form-field>
                     <div class="city-params_upload">
-                        <app-material-file-upload></app-material-file-upload>
+                        <app-material-file-upload [text]="'Social image(svg)'"></app-material-file-upload>
                         <img src="/assets/images/city/city_img.svg" alt="city_logo">
                     </div>
                 </div>
@@ -68,7 +67,7 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline">
                             <mat-label>Short descripotion</mat-label>
-                            <textarea matInput placeholder="" cdkAutosizeMaxRows="5"></textarea>
+                            <textarea matInput placeholder="" cdkTextareaAutosize cdkAutosizeMinRows="5"></textarea>
                         </mat-form-field>
                     </div>
                 </div>
@@ -81,7 +80,7 @@
                         <div class="setelem-tabs_en" (click)="changeSetElemsLang($event, en)">English</div>
                     </div>
                     <div class="main-setelem-content" id="subCityForm">
-                        <app-material-input-outline (delSubCityLine)=delSubCityLine($event) *ngFor="let input of subCityFormInputs"></app-material-input-outline>
+                        <app-material-input-outline  (delSubCityLine)=delSubCityLine($event) *ngFor="let input of subCityFormInputs" class="{{input}}" ></app-material-input-outline>
                     </div>
                     <button mat-button (click)="addSubCityLine()">Добавить</button>
                 </div>
