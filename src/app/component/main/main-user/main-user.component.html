@@ -1,0 +1,52 @@
+<!-- <main-user -->
+    <main class="main" #mainBlock>
+            <div class="main-tabs">
+                <div class="main-tabs_param active">Params</div>
+            </div>
+            <div class="mainuser-content">
+                <div class="mainuser-content_form" [formGroup]="UserMainForm">
+                    <mat-form-field>
+                        <input formControlName="inputId" matInput type="text" placeholder="ID" autocomplete="off" >
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputUrl" type="text" placeholder="URL" autocomplete="off" >
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputDateCreate" type="text" placeholder="Date Create" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputDataChange" type="text" placeholder="Data changes" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputCreated" type="text" placeholder="Who created" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputLastChange" type="text" placeholder="Who last changed" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputFirstName" type="text" placeholder="Firs name" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputSecondName" type="text" placeholder="Second name" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputPhone" type="phone" placeholder="Phone" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="inputEmail" type="email" placeholder="@email" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-select>
+                            <mat-option value="option">Content-Manager</mat-option>
+                            <mat-option value="option">Super Content-Manager</mat-option>
+                            <mat-option value="option">Seo-Manager</mat-option>
+                            <mat-option value="option">Admin</mat-option>
+                        </mat-select>
+                        <mat-label>
+                            <span>Admin</span> 
+                        </mat-label>
+                    </mat-form-field>
+                </div>
+            </div>
+        </main>
+<!-- </main-user> -->

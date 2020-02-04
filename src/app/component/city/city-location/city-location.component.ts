@@ -24,13 +24,15 @@ import {City} from '../../../interfaces/city.model';
 
 	constructor(@Inject(ElementRef) private element: ElementRef,
 				private globalService: GlobalService,
+				private cdRef:ChangeDetectorRef,
 				private store: Store<AppState>) {
                     
 	}
 	
 	public ngOnInit(): void {
 		this.store.select('cityPage').subscribe(({allCityData}) => {  //lisent store
-            this.allCityData = allCityData;
+			this.allCityData = allCityData;
+			console.log("CITY DATA:",allCityData)
 		})
 		this.changeSelectCity(this.allCityData[0].id); //default its 1st index of array
 		
@@ -41,6 +43,11 @@ import {City} from '../../../interfaces/city.model';
 
         
 	};
+
+	public ngOnDestroy(): void {
+
+		
+	}
 	
 	//////LIFE OFF
 

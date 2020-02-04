@@ -21,6 +21,10 @@ export class DeleteCity implements Action {
     constructor(public payload:City[]) {}
 };
 
+
+export type CityActions = AddCity| DeleteCity;
+
+
 // export class SelectCity implements Action {
 //     readonly type = CITY_ACTION.SELECT_CITY;
 

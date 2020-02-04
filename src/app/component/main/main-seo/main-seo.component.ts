@@ -53,9 +53,10 @@ import { Subscription } from 'rxjs';
 
     public ngOnInit(): void {
 
-
         this.store.select('citySeoPage').subscribe(({citySeoPages}) => {  //before this need send Id city to server, and return Array of Page
             this.citySeoPages = citySeoPages;
+            console.log("PAGE DATA: ", citySeoPages)
+            this.cdRef.detectChanges();
         });
         
     

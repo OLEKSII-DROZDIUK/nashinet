@@ -2,9 +2,8 @@ import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, Inject, C
 import { DOCUMENT } from '@angular/common';
 import { Store } from '@ngrx/store'
 import { AppState } from '../../ngrx/app.state';
-import { Subscription } from 'rxjs';
 
-import {City} from '../../interfaces/city.model';
+import { City } from '../../interfaces/city.model';
 import { AddCity } from '../../ngrx/actions/city.action'
 
 
@@ -19,13 +18,12 @@ import { AddCity } from '../../ngrx/actions/city.action'
 export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 	public cityData:City[] = [];
 
-	public currentMenuCategory:number = 1;
+	public currentMenuCategory:number;
 	//search city variable
 	public citySearchValue: string  = "";
 	public citySearchArray: Array<any> = [];
 	public citySearchOn: boolean = false;
 
-	private subsMenuCategory: Subscription = new Subscription();
 
 	constructor(@Inject(DOCUMENT) private document: Document,
 				private cdRef:ChangeDetectorRef,
@@ -54,7 +52,7 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 	};
 
 	public ngOnDestroy(): void {
-		this.subsMenuCategory.unsubscribe();
+		this.cdRef.detach();
 	};
 
 //////////////////////////////////////////////////////////////////////////////////// LIFE CYCLE ENd

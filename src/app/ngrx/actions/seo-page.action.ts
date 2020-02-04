@@ -16,3 +16,5 @@ export class DeleteSeoPage implements Action {
 
     constructor(public payload:any) {}
 };
+
+export type SeoPageActions = AddSeoPage | DeleteSeoPage;

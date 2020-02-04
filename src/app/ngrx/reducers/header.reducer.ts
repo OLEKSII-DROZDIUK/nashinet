@@ -8,12 +8,12 @@ export interface State {
 
 
 const initialState: State = {
-  choiceHeaderPage: 0
+  choiceHeaderPage: 2
 };
 
 
 export function headerPageReducer(state = initialState, action) {
-
+    
     switch (action.type) {
         case HEADER_ACTION.CHANGE_HEADER_PAGE:
             return {...state, choiceHeaderPage:action.payload}

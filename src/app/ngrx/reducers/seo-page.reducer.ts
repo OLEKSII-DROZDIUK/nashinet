@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { CITY_SEO_ACTION} from '../actions/seo-page.action';
+import * as SeoPageActions from '../actions/seo-page.action';
 
 export interface State {
     citySeoPages: any,
@@ -36,10 +36,10 @@ const initialState: State = {   //its mean if i take all page from server by id 
 };
 
 
-export function citySeoPagesReducer(state = initialState, action) {
+export function citySeoPagesReducer(state = initialState, action:SeoPageActions.SeoPageActions) {
 
     switch (action.type) {
-        case CITY_SEO_ACTION.ADD_NEW_PAGE: 
+        case SeoPageActions.CITY_SEO_ACTION.ADD_NEW_PAGE: 
             return {
                 ...state, citySeoPages:[...state.citySeoPages, action.payload]
             }

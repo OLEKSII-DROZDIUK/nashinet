@@ -1,0 +1,29 @@
+ 
+<!-- <app-users -->
+    <div class="users-header">Users</div>
+    <div class="users-admin">
+        <span class="users-admin_add" (click)="addNewUser()"></span>
+        <input class="users-admin_input" type="search" placeholder="Search" (keyup)="onSearchUsers($event)"> 
+        <span class="users-admin_search"></span>
+    </div>
+    <div class='users-my'>
+        <img src="{{usersData[0].logo}}" alt="user_logo">
+        <span class="users-my__name">{{usersData[0].name}}</span>
+    </div>
+    <div class="users-list">           
+        <div class="users-list__item" 
+        *ngFor="let user of usersSearchOn?usersSearchArray:usersData; let i = index"
+        [ngClass]="{'active': user.id === selectedUserId}"
+        (click)="changeSelectUser(user.id)">
+            <img src="{{user.logo}}" alt="user_logo">
+            <span class="item_main__name">{{user.name}}</span>
+            <div class="item_main_setting">
+                <div class="item_main_setting-btn" (click)="toggleSettingBtn($event)">
+                    <div class="setting-btn_popup">
+                        <span class="setting-btn_popup__release" (click)="deleteUser($event, user.id)">Удалить</span>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+<!-- </app-users> -->   

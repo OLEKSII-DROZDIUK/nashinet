@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {CITY_ACTION} from '../actions/city.action';
+import * as CityActions from '../actions/city.action';
 import { City } from '../../interfaces/city.model';
 
 export interface State {
@@ -37,14 +37,14 @@ const initialState: State = {
 };
 
 
-export function cityReducer(state = initialState, action) {
+export function cityReducer(state = initialState, action:CityActions.CityActions ) {
 
     switch (action.type) {
-        case CITY_ACTION.ADD_NEW_CITY: 
+        case CityActions.CITY_ACTION.ADD_NEW_CITY: 
             return {
                 ...state, allCityData:[...state.allCityData, action.payload]
             }
-        case CITY_ACTION.DEL_ONE_CITY:
+        case CityActions.CITY_ACTION.DEL_ONE_CITY:
             return {...state, allCityData:action.payload}
 
         default:

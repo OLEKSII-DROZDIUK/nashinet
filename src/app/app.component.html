@@ -1,6 +1,16 @@
 <div class="wrapper" #wrapper id="wrapper">
   <app-header #headerComponent></app-header>
-  <app-city #cityComponent></app-city>
+  <!-- <ng-container *ngIf="currentMenuCategory != 2; else elseTemplate">
+      <app-city #cityComponent></app-city>
+  </ng-container>
+  <ng-template #elseTemplate>
+      <app-users></app-users>
+  </ng-template> -->
+  
+  <app-city #cityComponent [ngStyle]="currentMenuCategory === 2 && {'display':'none'}"></app-city>
+
+  <app-users [ngStyle]="currentMenuCategory != 2 && {'display':'none'}"></app-users>
+
   <app-main></app-main>
 </div>
 

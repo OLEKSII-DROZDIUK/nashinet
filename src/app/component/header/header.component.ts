@@ -22,13 +22,13 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	constructor(@Inject(DOCUMENT) private document: Document,
 				private globalService: GlobalService,
+				private cdRef:ChangeDetectorRef,
 				private store: Store<AppState>) {
 		
 	}
 
 // //////////////////////////////////////////////////////////////////////// LIFE CYCLE
 	public ngOnInit(): void {
-		//this.choiceMainCategory(1); //default "Location category"
 
 		this.store.select('headerPage').subscribe(({choiceHeaderPage}) => {  //lisent store
             this.headerPage = choiceHeaderPage
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 	};
 
 	public ngOnDestroy(): void {
-
+		this.cdRef.detach();
 	};
 
 // ////////////////////////////////////////////////////////////////////////////////// LIFE CYCLE ENd
@@ -57,8 +57,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
 				currentNode.classList.remove("select");
 			};
-			
-			// this.globalService.changeCurentMenuCategory(index);
 
 			this.store.dispatch(new ChangeHeaderPage(index))
 
