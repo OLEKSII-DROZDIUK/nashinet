@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {HEADER_ACTION} from '../actions/header.action';
+import {HEADER_ACTION, ChangeHeaderPage} from '../actions/header.action';
 
 
 export interface State {
@@ -8,11 +8,11 @@ export interface State {
 
 
 const initialState: State = {
-  choiceHeaderPage: 2
+  choiceHeaderPage: 0
 };
 
 
-export function headerPageReducer(state = initialState, action) {
+export function headerPageReducer(state = initialState, action: ChangeHeaderPage) {
     
     switch (action.type) {
         case HEADER_ACTION.CHANGE_HEADER_PAGE:

@@ -25,4 +25,4 @@ export interface AppState {
 };
 
 
-export const getAllCities = createFeatureSelector<any>('cityPage');
+// export const getAllCities = createFeatureSelector<any>('cityPage');

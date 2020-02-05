@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { StoreModule, } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { cityReducer } from './ngrx/reducers/city.reducer';
 import { headerPageReducer } from './ngrx/reducers/header.reducer';
 import { citySeoPagesReducer } from './ngrx/reducers/seo-page.reducer';
@@ -31,7 +31,7 @@ import { GlobalService } from './services/global.service';
     CityModule,
     MainModule,
     UsersModule,
-    StoreModule.forRoot({cityPage: cityReducer, headerPage: headerPageReducer, citySeoPage: citySeoPagesReducer, usersPage: usersReducer})
+    StoreModule.forRoot({cityPage: cityReducer, headerPage: headerPageReducer, citySeoPage: citySeoPagesReducer, usersPage: usersReducer}),
     
   ],
   providers: [GlobalService],
