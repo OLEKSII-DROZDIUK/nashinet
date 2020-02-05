@@ -1,9 +1,9 @@
-import { Action } from '@ngrx/store';
 
+import { SeoPage } from '../../interfaces/seo-page.model'
 import * as SeoPageActions from '../actions/seo-page.action';
 
 export interface State {
-    citySeoPages: any,
+    citySeoPages:SeoPage[],
 };
 
 const initialState: State = {   //its mean if i take all page from server by id City, and we have list of page/
@@ -43,9 +43,6 @@ export function citySeoPagesReducer(state = initialState, action:SeoPageActions.
             return {
                 ...state, citySeoPages:[...state.citySeoPages, action.payload]
             }
-        // case CITY_ACTION.DEL_ONE_CITY:
-        //     return {...state, allCityData:action.payload}
-
         default:
             return state;
     };

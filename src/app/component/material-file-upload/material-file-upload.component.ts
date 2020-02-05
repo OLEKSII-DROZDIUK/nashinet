@@ -39,7 +39,7 @@ export class MaterialFileUploadComponent implements OnInit {
                         console.log(reader.result); //have base64 code
                     };
                     reader.onerror = function (error) {
-                        console.log('Error: ', error);
+                        console.log('Error when convert img to base64: ', error);
                     };
                 }
         };

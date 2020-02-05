@@ -10,11 +10,16 @@ import { CommonModule } from '@angular/common';
 import { CityComponent } from './city.component';
 import { CityLocationModule } from './city-location/city-location.module';
 import { CitySeoModule } from './city-seo/city-seo.module'
+import { StoreModule } from '@ngrx/store';
+import { cityReducer } from '../../ngrx/reducers/city.reducer';
+import { headerPageReducer } from '../../ngrx/reducers/header.reducer';
 
 
 @NgModule({
 	imports: [
 		CommonModule,
+		StoreModule.forFeature('cityPage', cityReducer),
+		StoreModule.forFeature('headerPage', headerPageReducer),
 		CityLocationModule,
 		CitySeoModule
 

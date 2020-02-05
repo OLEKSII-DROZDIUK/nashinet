@@ -32,7 +32,6 @@ import {City} from '../../../interfaces/city.model';
 	public ngOnInit(): void {
 		this.store.select('cityPage').subscribe(({allCityData}) => {  //lisent store
 			this.allCityData = allCityData;
-			console.log("CITY DATA:",allCityData)
 		})
 		this.changeSelectCity(this.allCityData[0].id); //default its 1st index of array
 		

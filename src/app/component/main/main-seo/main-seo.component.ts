@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store'
 import { AppState } from '../../../ngrx/app.state';
 import { AddSeoPage } from '../../../ngrx/actions/seo-page.action';
 
+import { SeoPage } from '../../../interfaces/seo-page.model';
+
 import { Subscription } from 'rxjs';
 
 
@@ -20,7 +22,7 @@ import { Subscription } from 'rxjs';
   })
 
   export class MainSeo implements OnInit, AfterViewInit, OnDestroy {
-    public citySeoPages:any;
+    public citySeoPages:SeoPage[] = [];
     public citySeoPageArray: Array<any> = [];
 
     public paramsPageLang: string = "ru";
@@ -55,7 +57,6 @@ import { Subscription } from 'rxjs';
 
         this.store.select('citySeoPage').subscribe(({citySeoPages}) => {  //before this need send Id city to server, and return Array of Page
             this.citySeoPages = citySeoPages;
-            console.log("PAGE DATA: ", citySeoPages)
             this.cdRef.detectChanges();
         });
         

@@ -13,11 +13,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { MainSeo  } from './main-seo.component';
 import { MatSelectModule } from '@angular/material';
+import { cityReducer } from 'src/app/ngrx/reducers/city.reducer';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
 	imports: [
 		CommonModule,
+		StoreModule.forFeature('cityPage', cityReducer),
 		MainSeoPageModule,
 		MatInputModule,
 		FormsModule,

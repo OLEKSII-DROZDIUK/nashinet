@@ -1,22 +1,22 @@
 import { Action } from '@ngrx/store';
+import { User } from '../../interfaces/user.model';
 
-
-export namespace USER_ACTION {
-    export const ADD_NEW_USER:string = "ADD_NEW_CITY";
-    export const DEL_ONE_USER:string = "DEL_ONE_CITY";
+export enum USER_ACTION {
+    ADD_NEW_USER = "ADD_NEW_USER",
+    DEL_ONE_USER = "DEL_ONE_USER",
 }
 
 
 export class AddUser implements Action {
     readonly type = USER_ACTION.ADD_NEW_USER;
     
-    constructor(public payload:Object) {}
+    constructor(public payload:User) {}
 };
 
 export class DeleteUser implements Action {
     readonly type = USER_ACTION.DEL_ONE_USER;
 
-    constructor(public payload:Array<any>) {}
+    constructor(public payload:User[]) {}
 };
 
 export type UserActions = AddUser| DeleteUser;

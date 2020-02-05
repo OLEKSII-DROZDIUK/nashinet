@@ -3,6 +3,8 @@ import { DOCUMENT } from '@angular/common';
 import { Store } from '@ngrx/store'
 import { AppState } from '../../ngrx/app.state';
 
+import { User } from '../../interfaces/user.model'
+
 import { DeleteUser, AddUser } from "../../ngrx/actions/users.action";
 
 
@@ -15,7 +17,7 @@ import { DeleteUser, AddUser } from "../../ngrx/actions/users.action";
 })
 
 export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
-	public usersData: Array<any> = [];
+	public usersData: User[] = [];
 	
 	public selectedUserId:string;
 	public usersSearchValue: string  = "";
@@ -33,7 +35,6 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
 		this.store.select('usersPage').subscribe(({usersData}) => {  //lisent store
 			this.usersData = usersData;
-			console.log("USES DATA: ",usersData)
 			this.cdRef.detectChanges();
 		})
 		this.changeSelectUser(this.usersData[0].id); //default its 1st index of array

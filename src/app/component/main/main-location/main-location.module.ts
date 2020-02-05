@@ -10,12 +10,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { MaterialFileUploadModule} from '../../material-file-upload/material-file-upload.module';
 
 import { MainLocation  } from './main-location.component';
+import { cityReducer } from 'src/app/ngrx/reducers/city.reducer';
+import { StoreModule } from '@ngrx/store';
 
 
 
 @NgModule({
 	imports: [
 		CommonModule,
+		StoreModule.forFeature('cityPage', cityReducer),
 		MatInputModule,
 		FormsModule,
 		ReactiveFormsModule,

@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+
 import * as CityActions from '../actions/city.action';
 import { City } from '../../interfaces/city.model';
 
@@ -6,9 +6,6 @@ export interface State {
     allCityData:City[],
 };
 
-// export const getId = (state: State) => state[state.selected].id;
-// export const getCities = (state: State) => state.allCityData
-// export const getSelectedCity = (state: State) => state.selected;  //get index in arr
 
 const initialState: State = {
   allCityData: [

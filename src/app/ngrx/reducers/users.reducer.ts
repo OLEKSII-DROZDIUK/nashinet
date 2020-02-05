@@ -1,8 +1,8 @@
-import { Action } from '@ngrx/store';
 import * as UserActions from '../actions/users.action';
+import { User } from '../../interfaces/user.model';
 
 export interface State {
-    usersData:Array<any>,
+    usersData:User[],
 };
 
 

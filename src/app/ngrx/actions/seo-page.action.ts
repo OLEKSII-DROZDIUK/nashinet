@@ -1,20 +1,21 @@
 import { Action } from '@ngrx/store';
+import { SeoPage} from '../../interfaces/seo-page.model';
 
-export namespace CITY_SEO_ACTION {
-    export const ADD_NEW_PAGE:string = "ADD_NEW_CITY";
-    export const DEL_ONE_PAGE:string = "DEL_ONE_CITY";
+export enum CITY_SEO_ACTION {
+    ADD_NEW_PAGE = "ADD_NEW_SEO-PAGE",
+    DEL_ONE_PAGE = "DEL_ONE_SEO-PAGE",
 };
 
 export class AddSeoPage implements Action {
     readonly type = CITY_SEO_ACTION.ADD_NEW_PAGE
 
-    constructor(public payload:any) {}
+    constructor(public payload:SeoPage) {}
 };
 
 export class DeleteSeoPage implements Action {
     readonly type =  CITY_SEO_ACTION.DEL_ONE_PAGE;
 
-    constructor(public payload:any) {}
+    constructor(public payload:SeoPage[]) {}
 };
 
 export type SeoPageActions = AddSeoPage | DeleteSeoPage;

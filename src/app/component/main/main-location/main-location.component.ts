@@ -134,7 +134,6 @@ import {City} from '../../../interfaces/city.model';
         
         for (let i = 1; i < parantConteiner.childNodes.length; i++) {
             let currentNode = parantConteiner.childNodes[i] as HTMLDivElement;
-            console.log(this.subCityFormInputs, currentNode)
             if(currentNode ===  parent) {
                 i--
                 this.subCityFormInputs.splice(i,1);//del from Array

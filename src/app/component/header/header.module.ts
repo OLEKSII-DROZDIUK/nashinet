@@ -7,10 +7,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
+import { StoreModule } from '@ngrx/store';
+import { headerPageReducer } from '../../ngrx/reducers/header.reducer';
 
 @NgModule({
 	imports: [
 		CommonModule,
+		StoreModule.forFeature('headerPage', headerPageReducer),
 	],
 	declarations: [
 		HeaderComponent,

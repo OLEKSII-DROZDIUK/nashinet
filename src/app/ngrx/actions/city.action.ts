@@ -1,11 +1,11 @@
 import { Action } from '@ngrx/store';
 import { City} from '../../interfaces/city.model';
 
-export namespace CITY_ACTION {
-    export const ADD_NEW_CITY:string = "ADD_NEW_CITY";
-    export const SELECT_CITY:string = "SELECT_CITY";
-    export const DEL_ONE_CITY:string = "DEL_ONE_CITY";
-    export const GET_ALL_CYTIES: string = "GET_ALL_CYTIES";
+export enum CITY_ACTION {
+    ADD_NEW_CITY = "ADD_NEW_CITY",
+    SELECT_CITY = "SELECT_CITY",
+    DEL_ONE_CITY = "DEL_ONE_CITY",
+    GET_ALL_CYTIES = "GET_ALL_CYTIES",
 }
 
 
@@ -23,10 +23,3 @@ export class DeleteCity implements Action {
 
 
 export type CityActions = AddCity| DeleteCity;
-
-
-// export class SelectCity implements Action {
-//     readonly type = CITY_ACTION.SELECT_CITY;
-
-//     constructor(public payload:City) {}
-// };
