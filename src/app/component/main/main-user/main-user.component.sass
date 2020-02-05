@@ -106,16 +106,13 @@
                         
 .mat-form-field-appearance-outline
     .mat-form-field-wrapper
-        .mat-form-field-outline
-            .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end
-                border-color: rgba(255, 255, 255, 0.54)
         .mat-form-field-infix
             label
                 mat-label
                     span
-                        animation: margin-left 3s ease
-                        margin-left: 30px
-                        position: relative
+                        animation: padding-left 3s ease
+                        padding-left: 30px
+                        height: 100%
                         &::before
                             content: ''
                             position: absolute
@@ -129,8 +126,3 @@
             .mat-select-value
                 .mat-select-value-text
                     color: rgba(255, 255, 255, 0.87)
-.mat-focused
-    .mat-form-field-wrapper
-        .mat-form-field-outline
-            .mat-form-field-outline-start, .mat-form-field-outline-gap, .mat-form-field-outline-end
-                border-color: rgba(255, 255, 255, 0.54)

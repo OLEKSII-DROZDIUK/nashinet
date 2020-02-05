@@ -8,7 +8,7 @@
         <input class="city-admin_input" type="search" placeholder="Search" (keyup)="onSearchCity($event)"> 
         <span class="city-admin_search"></span>
     </div>
-    <city-location [content]="citySearchOn?citySearchArray:cityData"></city-location>
+    <city-location *ngIf="cityData.length > 0" [content]="citySearchOn?citySearchArray:cityData"></city-location>
 </ng-container>
 
     <!-- if page SEO -->
@@ -17,7 +17,7 @@
     <div class="city-adminseo">
         <input class="city-adminseo_input" type="search" placeholder="Search" (keyup)="onSearchCity($event)"> 
     </div>
-    <city-seo [content]="citySearchOn?citySearchArray:cityData"></city-seo>
+    <city-seo *ngIf="cityData.length > 0" [content]="citySearchOn?citySearchArray:cityData"></city-seo>
 </ng-container>
 
 

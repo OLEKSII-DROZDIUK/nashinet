@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store'
 import { AppState } from '../../ngrx/app.state';
 
 import { City } from '../../interfaces/city.model';
-import { AddCity } from '../../ngrx/actions/city.action'
+import { AddCity, LoadCitiesAction } from '../../ngrx/actions/city.action'
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -24,6 +25,9 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 	public citySearchArray: Array<any> = [];
 	public citySearchOn: boolean = false;
 
+	//Variable for ngrx
+	loading$: Observable<boolean>;
+	error$: Observable<Error>;
 
 	constructor(@Inject(DOCUMENT) private document: Document,
 				private cdRef:ChangeDetectorRef,
@@ -33,9 +37,12 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 
 // //////////////////////////////////////////////////////////////////////// LIFE CYCLE
 	public ngOnInit(): void {
-
+	
+		this.store.dispatch(new LoadCitiesAction());
+		
 		this.store.select('cityPage').subscribe(({allCityData}) => {  //lisent store
 			this.cityData = allCityData;
+			this.cdRef.detectChanges();
 		})
 
 		this.store.select('headerPage').subscribe(({choiceHeaderPage}) => {
@@ -84,6 +91,5 @@ export class CityComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.citySearchArray = [];
 		}
 	};
-
 
 };

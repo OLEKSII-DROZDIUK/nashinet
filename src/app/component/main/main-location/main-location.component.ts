@@ -28,8 +28,6 @@ import {City} from '../../../interfaces/city.model';
     public subCityLang: string =  "ru";
     public subCityFormInputs:Array<any> = [];
     public selectedCityId:string;
-
-    public strtest:string = 'sadasdasdsdasdasdasdasdas'
     
     private subsSelectCityId: Subscription = new Subscription();
 

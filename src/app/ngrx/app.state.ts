@@ -1,4 +1,4 @@
-import {ActionReducerMap} from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
 
 import * as City from './reducers/city.reducer';
 import * as HeaderCategory from './reducers/header.reducer'

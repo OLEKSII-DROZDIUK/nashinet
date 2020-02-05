@@ -7,9 +7,9 @@
                 <input class="page_admin__input" type="search" placeholder="Search" (keyup)="onSearchPage($event)"> 
                 <span class="page_admin__search"></span>
             </div>
-            <main-seo-page [content]="seoPageSearchOn?citySeoPageArray:citySeoPages"></main-seo-page>
+            <main-seo-page *ngIf="citySeoPages.length > 0" [content]="seoPageSearchOn?citySeoPageArray:citySeoPages"></main-seo-page>
        </div>
-        <div class="mainseo-data">
+        <div class="mainseo-data" *ngIf="citySeoPages.length > 0">
             <div class="mainseo-data_tabs">
                 <div class="main-tabs_param active" (click)="changeContent($event)">Params</div>
                 <div class="main-tabs_set" (click)="changeContent($event)">Seo</div>

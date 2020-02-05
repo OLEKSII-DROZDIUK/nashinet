@@ -1,5 +1,5 @@
 <!-- city-seo -->
-<div class="city-list">           
+<div class="city-list" *ngIf="cityData.length > 0">           
     <div class="city-list__item" 
     *ngFor="let city of cityData; let i = index"
     [ngClass]="{'active': city.id === selectedCityId}"

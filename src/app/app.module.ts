@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { } from './services/global.service'
+import { HttpClientModule} from '@angular/common/http'
 // import { cityReducer } from './ngrx/reducers/city.reducer';
 // import { headerPageReducer } from './ngrx/reducers/header.reducer';
 // import { citySeoPagesReducer } from './ngrx/reducers/seo-page.reducer';
@@ -19,13 +21,10 @@ import { GlobalService } from './services/global.service';
 
 
 import {reducers} from './ngrx/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { CityEffects } from './ngrx/effects/city.effects';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -33,7 +32,13 @@ import {reducers} from './ngrx/app.state';
     MainModule,
     UsersModule,
     StoreModule.forRoot(reducers),
-    
+    EffectsModule.forRoot([CityEffects]),
+    HttpClientModule,
+  ],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]

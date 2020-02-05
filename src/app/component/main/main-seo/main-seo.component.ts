@@ -11,8 +11,6 @@ import { SeoPage } from '../../../interfaces/seo-page.model';
 
 import { Subscription } from 'rxjs';
 
-
-
 @Component({
     selector: 'main-seo',
     templateUrl: './main-seo.component.html',
@@ -57,7 +55,7 @@ import { Subscription } from 'rxjs';
 
         this.store.select('citySeoPage').subscribe(({citySeoPages}) => {  //before this need send Id city to server, and return Array of Page
             this.citySeoPages = citySeoPages;
-            this.cdRef.detectChanges();
+            if (!this.cdRef['destroyed']) this.cdRef.detectChanges();
         });
         
     
@@ -69,7 +67,7 @@ import { Subscription } from 'rxjs';
     };
 
     public ngOnDestroy(): void {
-		
+        this.cdRef.detach();
 	};
 
     ///life off

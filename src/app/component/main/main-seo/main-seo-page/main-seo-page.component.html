@@ -1,24 +1,26 @@
 <!-- <main-seo-page -->
-    <div class="pages-list">           
-            <div class="pages-list__item" 
-            *ngFor="let page of citySeoPages; let i = index"
-            (click)="changeSelectSeoPage(page.id)"
-            [ngClass]="{'active': page.id === selectedPageId}">
-                <div class="seo-page_head">
-                    <span class="seo-page_head__name">{{page.name}}</span>
-                    <span class="seo-page_head__rout">{{page.rout}}</span>
-                </div>
-                <div class="seo-page_setting">
-                    <div class="seo-page_setting-btn" (click)="toggleSettingBtn($event)">
-                        <div class="setting-btn_popup">
-                            <span class="setting-btn_popup__release" (click)="publicPage(page.id)">Опубликовать</span>
-                            <span class="setting-btn_popup__archive" (click)="archivePage(page.id)">Архивировать</span>
-                            <span class="setting-btn_popup__delete" (click)="deleteCity(page.id)">Удалить</span>
-                        </div>
-                    </div>
-                    <span class="seo-page_setting-edit"></span>
-                    <span class="seo-page_setting-category"></span>
-                </div>        
+    <div class="pages-list">
+    <ng-container *ngIf="citySeoPages.length > 0">
+        <div class="pages-list__item" 
+        *ngFor="let page of citySeoPages; let i = index"
+        (click)="changeSelectSeoPage(page.id)"
+        [ngClass]="{'active': page.id === selectedPageId}">
+            <div class="seo-page_head">
+                <span class="seo-page_head__name">{{page.name}}</span>
+                <span class="seo-page_head__rout">{{page.rout}}</span>
             </div>
+            <div class="seo-page_setting">
+                <div class="seo-page_setting-btn" (click)="toggleSettingBtn($event)">
+                    <div class="setting-btn_popup">
+                        <span class="setting-btn_popup__release" (click)="publicPage(page.id)">Опубликовать</span>
+                        <span class="setting-btn_popup__archive" (click)="archivePage(page.id)">Архивировать</span>
+                        <span class="setting-btn_popup__delete" (click)="deleteCity(page.id)">Удалить</span>
+                    </div>
+                </div>
+                <span class="seo-page_setting-edit"></span>
+                <span class="seo-page_setting-category"></span>
+            </div>        
         </div>
+    </ng-container>
+    </div>
 <!-- </main-seo-page > -->
